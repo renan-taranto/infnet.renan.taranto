@@ -1,0 +1,5 @@
+MotoID,DataManutencao,TipoDespesa,Valor,Descricao,LitrosAbastecidos
+1,2024-01-15,Manutencao,600.00,Troca de óleo e filtro
+1,2024-02-20,Abastecimento,50.00,,10.6
+2,2024-03-10,Manutencao,1200.00,Troca de pneus
+2,2024-03-15,Abastecimento,45.00,,9.2
