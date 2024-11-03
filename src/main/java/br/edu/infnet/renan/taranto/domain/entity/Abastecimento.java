@@ -15,19 +15,25 @@ public class Abastecimento extends Despesa {
 
     }
 
-    public Abastecimento(LocalDate data, float valor, float litrosAbastecidos) {
+    public Abastecimento(LocalDate data, float valor, float litrosAbastecidos, String tipoCombustivel) {
         super(data, valor);
         this.litrosAbastecidos = litrosAbastecidos;
+        this.tipoCombustivel = tipoCombustivel;
     }
 
     public float getLitrosAbastecidos() {
         return litrosAbastecidos;
     }
 
+    public String getTipoCombustivel() {
+        return tipoCombustivel;
+    }
+
     @Override
     public String toString() {
         return "Abastecimento{" +
                 "litrosAbastecidos=" + litrosAbastecidos +
+                ", tipoCombustivel='" + tipoCombustivel + '\'' +
                 "} " + super.toString();
     }
 }

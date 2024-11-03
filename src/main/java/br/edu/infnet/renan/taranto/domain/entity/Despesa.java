@@ -23,6 +23,10 @@ public abstract class Despesa {
         this.valor = valor;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public LocalDate getData() {
         return data;
     }

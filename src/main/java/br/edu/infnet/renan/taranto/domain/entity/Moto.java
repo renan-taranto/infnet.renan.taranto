@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Moto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
     private String marca;
     private String modelo;
 
@@ -15,23 +15,30 @@ public class Moto {
 
     }
 
-    public Moto(long id) {
+    public Moto(int id, String marca, String modelo) {
         this.id = id;
+        this.marca = marca;
+        this.modelo = modelo;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
 
     @Override
     public String toString() {
         return "Moto{" +
                 "id=" + id +
+                ", marca='" + marca + '\'' +
+                ", modelo='" + modelo + '\'' +
                 '}';
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public long getId() {
-        return id;
     }
 }

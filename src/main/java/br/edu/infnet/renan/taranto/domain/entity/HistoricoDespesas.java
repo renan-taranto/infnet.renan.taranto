@@ -14,7 +14,7 @@ public class HistoricoDespesas {
     private int id;
     @OneToOne
     private Moto moto;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Despesa> despesas;
     private LocalDate dataCriacao;
     private boolean ativo;
@@ -23,10 +23,15 @@ public class HistoricoDespesas {
 
     }
 
-    public HistoricoDespesas(Moto moto) {
+    public HistoricoDespesas(Moto moto, LocalDate dataCriacao) {
         this.moto = moto;
         this.despesas = new ArrayList<>();
+        this.dataCriacao = dataCriacao;
         this.ativo = true;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public Moto getMoto() {
