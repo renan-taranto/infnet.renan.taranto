@@ -2,8 +2,8 @@ package br.edu.infnet.renan.taranto.adapter.loader;
 
 import br.edu.infnet.renan.taranto.domain.entity.HistoricoDespesas;
 import br.edu.infnet.renan.taranto.domain.entity.Moto;
-import br.edu.infnet.renan.taranto.port.output.repository.HistoricoDespesasRepository;
-import br.edu.infnet.renan.taranto.port.output.repository.MotoRepository;
+import br.edu.infnet.renan.taranto.port.input.usecase.BuscarMoto;
+import br.edu.infnet.renan.taranto.port.input.usecase.SalvarHistoricoDespesa;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -14,13 +14,13 @@ import java.util.List;
 @Order(2)
 public class HistoricoDespesasLoader implements EntityLoader {
     private final LeitorCsv leitorCsv;
-    private final MotoRepository motoRepository;
-    private final HistoricoDespesasRepository historicoDespesasRepository;
+    private final BuscarMoto buscarMoto;
+    private final SalvarHistoricoDespesa incluirHistoricoDespesa;
 
-    public HistoricoDespesasLoader(LeitorCsv leitorCsv, MotoRepository motoRepository, HistoricoDespesasRepository historicoDespesasRepository) {
+    public HistoricoDespesasLoader(LeitorCsv leitorCsv, BuscarMoto buscarMoto, SalvarHistoricoDespesa incluirHistoricoDespesa) {
         this.leitorCsv = leitorCsv;
-        this.motoRepository = motoRepository;
-        this.historicoDespesasRepository = historicoDespesasRepository;
+        this.buscarMoto = buscarMoto;
+        this.incluirHistoricoDespesa = incluirHistoricoDespesa;
     }
 
     @Override
@@ -29,13 +29,13 @@ public class HistoricoDespesasLoader implements EntityLoader {
         for (String[] linha : dados) {
             Moto moto = buscarMotoPorId(Integer.parseInt(linha[0]));
             HistoricoDespesas historicoDespesas = new HistoricoDespesas(moto, LocalDate.parse(linha[3]));
-            historicoDespesasRepository.salvar(historicoDespesas);
+            incluirHistoricoDespesa.salvar(historicoDespesas);
             System.out.println("Histórico de despesas carregado: " + historicoDespesas);
         }
     }
     
     private Moto buscarMotoPorId(int id) {
-        return motoRepository.buscarPorId(id).orElseThrow(
+        return buscarMoto.buscarPorId(id).orElseThrow(
                 () -> new RuntimeException("Erro ao criar 'HistoricoDespesa' da 'Moto' de id '" + id + "'. Moto não encontrada.")
         );
     }

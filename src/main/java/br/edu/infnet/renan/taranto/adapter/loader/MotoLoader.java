@@ -1,7 +1,7 @@
 package br.edu.infnet.renan.taranto.adapter.loader;
 
 import br.edu.infnet.renan.taranto.domain.entity.Moto;
-import br.edu.infnet.renan.taranto.port.output.repository.MotoRepository;
+import br.edu.infnet.renan.taranto.port.input.usecase.SalvarMoto;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -11,11 +11,11 @@ import java.util.List;
 @Order(1)
 public class MotoLoader implements EntityLoader {
     private final LeitorCsv leitorCsv;
-    private final MotoRepository motoRepository;
+    private final SalvarMoto salvarMoto;
 
-    public MotoLoader(LeitorCsv leitorCsv, MotoRepository motoRepository) {
+    public MotoLoader(LeitorCsv leitorCsv, SalvarMoto salvarMoto) {
         this.leitorCsv = leitorCsv;
-        this.motoRepository = motoRepository;
+        this.salvarMoto = salvarMoto;
     }
 
     @Override
@@ -23,7 +23,7 @@ public class MotoLoader implements EntityLoader {
         List<String[]> dados = leitorCsv.ler("files/motos.csv");
         for (String[] linha : dados) {
             Moto moto = new Moto(Integer.parseInt(linha[0]), linha[1], linha[2]);
-            motoRepository.salvar(moto);
+            salvarMoto.salvar(moto);
             System.out.println("Moto carregada: " + moto);
         }
     }

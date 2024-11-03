@@ -2,23 +2,25 @@ package br.edu.infnet.renan.taranto.adapter.loader;
 
 import br.edu.infnet.renan.taranto.domain.entity.HistoricoDespesas;
 import br.edu.infnet.renan.taranto.domain.entity.Manutencao;
-import br.edu.infnet.renan.taranto.port.output.repository.HistoricoDespesasRepository;
+import br.edu.infnet.renan.taranto.port.input.usecase.BuscarHistoricoDespesas;
+import br.edu.infnet.renan.taranto.port.input.usecase.SalvarHistoricoDespesa;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 
 @Component
 @Order(3)
 public class ManutencaoLoader implements EntityLoader {
     private final LeitorCsv leitorCsv;
-    private final HistoricoDespesasRepository historicoDespesasRepository;
+    private final BuscarHistoricoDespesas buscarHistoricoDespesas;
+    private final SalvarHistoricoDespesa salvarHistoricoDespesa;
 
-    public ManutencaoLoader(LeitorCsv leitorCsv, HistoricoDespesasRepository historicoDespesasRepository) {
+    public ManutencaoLoader(LeitorCsv leitorCsv, BuscarHistoricoDespesas buscarHistoricoDespesas, SalvarHistoricoDespesa salvarHistoricoDespesa) {
         this.leitorCsv = leitorCsv;
-        this.historicoDespesasRepository = historicoDespesasRepository;
+        this.buscarHistoricoDespesas = buscarHistoricoDespesas;
+        this.salvarHistoricoDespesa = salvarHistoricoDespesa;
     }
 
     @Override
@@ -37,13 +39,13 @@ public class ManutencaoLoader implements EntityLoader {
                     linha[5]
             );
             historicoDespesas.adicionarDespesa(manutencao);
-            historicoDespesasRepository.salvar(historicoDespesas);
+            salvarHistoricoDespesa.salvar(historicoDespesas);
             System.out.println("Manutencao carregada: " + manutencao);
         }
     }
 
     private HistoricoDespesas buscarHistoricoPorMotoId(int motoId) {
-        return historicoDespesasRepository.obterPorMotoId(motoId).orElseThrow(
+        return buscarHistoricoDespesas.buscarPorMotoId(motoId).orElseThrow(
                 () -> new RuntimeException("Erro ao criar 'Manutencao' da 'Moto' de id '" + motoId + "'. 'HistoricoDespesas' não encontrado.")
         );
     }
