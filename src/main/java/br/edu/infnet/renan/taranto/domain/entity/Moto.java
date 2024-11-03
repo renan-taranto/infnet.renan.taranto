@@ -1,20 +1,37 @@
 package br.edu.infnet.renan.taranto.domain.entity;
 
-public class Moto {
-    private int id;
+import jakarta.persistence.*;
 
-    public Moto(int id) {
+@Entity
+@Table(name = "moto")
+public class Moto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    private String marca;
+    private String modelo;
+
+    public Moto() {
+
+    }
+
+    public Moto(long id) {
         this.id = id;
     }
 
-    public int getId() {
-        return id;
-    }
 
     @Override
     public String toString() {
         return "Moto{" +
                 "id=" + id +
                 '}';
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
     }
 }

@@ -3,6 +3,7 @@ package br.edu.infnet.renan.taranto.adapter.loader;
 import br.edu.infnet.renan.taranto.domain.entity.HistoricoDespesas;
 import br.edu.infnet.renan.taranto.domain.entity.Moto;
 import br.edu.infnet.renan.taranto.port.output.repository.HistoricoDespesasRepository;
+import br.edu.infnet.renan.taranto.port.output.repository.MotoRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -18,10 +19,12 @@ import java.util.Map;
 public class Loader implements ApplicationRunner {
     private List<DespesaObserver> observers;
     private HistoricoDespesasRepository historicoDespesasRepository;
+    private MotoRepository motoRepository;
 
-    public Loader(List<DespesaObserver> observers, HistoricoDespesasRepository historicoDespesasRepository) {
+    public Loader(List<DespesaObserver> observers, HistoricoDespesasRepository historicoDespesasRepository, MotoRepository motoRepository) {
         this.observers = observers;
         this.historicoDespesasRepository = historicoDespesasRepository;
+        this.motoRepository = motoRepository;
     }
 
     @Override
@@ -37,11 +40,11 @@ public class Loader implements ApplicationRunner {
         BufferedReader leitor = new BufferedReader(new FileReader("files/despesas.csv"));
         leitor.readLine(); //Ignora a primeira linha contendo os cabeçalhos do csv
 
-        Map<Integer, HistoricoDespesas> historicos = new HashMap<>();
+        Map<Long, HistoricoDespesas> historicos = new HashMap<>();
         String linha;
         while ((linha = leitor.readLine()) != null) {
             String[] dados = linha.split(",");
-            int motoId = Integer.parseInt(dados[0]);
+            long motoId = Long.parseLong(dados[0]);
 
             HistoricoDespesas historico = obterOuCriarHistorico(historicos, motoId);
             notificarObservers(dados, historico);
@@ -51,13 +54,14 @@ public class Loader implements ApplicationRunner {
         incluir(historicos.values());
     }
 
-    private HistoricoDespesas obterOuCriarHistorico(Map<Integer, HistoricoDespesas> historicos, int motoId) {
+    private HistoricoDespesas obterOuCriarHistorico(Map<Long, HistoricoDespesas> historicos, long motoId) {
         // Verifica se já existe um historico para a moto com o ID fornecido
         HistoricoDespesas historico = historicos.get(motoId);
 
         // Se não existir, cria uma nova moto e seu histórico
         if (historico == null) {
             Moto moto = new Moto(motoId);
+            motoRepository.salvar(moto);
             historico = new HistoricoDespesas(moto);
             historicos.put(motoId, historico);
         }
