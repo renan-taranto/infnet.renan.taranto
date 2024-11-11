@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "historico_despesas")
-public class HistoricoDespesas {
+@Table(name = "historico")
+public class Historico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -19,11 +19,11 @@ public class HistoricoDespesas {
     private LocalDate dataCriacao;
     private boolean ativo;
 
-    public HistoricoDespesas() {
+    public Historico() {
 
     }
 
-    public HistoricoDespesas(Moto moto, LocalDate dataCriacao) {
+    public Historico(Moto moto, LocalDate dataCriacao) {
         this.moto = moto;
         this.despesas = new ArrayList<>();
         this.dataCriacao = dataCriacao;
@@ -56,7 +56,7 @@ public class HistoricoDespesas {
 
     @Override
     public String toString() {
-        return "HistoricoDespesas{" +
+        return "Historico{" +
                 "id=" + id +
                 ", moto=" + moto +
                 ", despesas=" + despesas +

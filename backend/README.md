@@ -121,11 +121,11 @@ HistoricoDespesas "1" *--> "despesas *" Despesa
 HistoricoDespesas "1" *--> "moto 1" Moto 
 HistoricoDespesasRepository "1" *--> "historicos *" HistoricoDespesas 
 HistoricoDespesasRepository  ..>  HistoricoDespesasRepository 
-ListarHistoricos "1" *--> "historicoDespesasRepository 1" HistoricoDespesasRepository 
+ListarHistoricos "1" *--> "historicoRepository 1" HistoricoDespesasRepository 
 ListarHistoricosController "1" *--> "listarHistoricos 1" ListarHistoricos 
 Loader "1" *--> "observers *" DespesaObserver 
 Loader  ..>  HistoricoDespesas : «create»
-Loader "1" *--> "historicoDespesasRepository 1" HistoricoDespesasRepository 
+Loader "1" *--> "historicoRepository 1" HistoricoDespesasRepository 
 Loader  ..>  Moto : «create»
 Manutencao  -->  Despesa 
 ManutencaoObserver  ..>  DespesaObserver 

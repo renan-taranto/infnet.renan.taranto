@@ -4,6 +4,7 @@ import br.edu.infnet.renan.taranto.domain.entity.Moto;
 import br.edu.infnet.renan.taranto.port.output.repository.MotoRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -17,6 +18,11 @@ public class MotoRepositoryImpl implements MotoRepository {
     @Override
     public void salvar(Moto moto) {
         springDataMotoRepository.save(moto);
+    }
+
+    @Override
+    public List<Moto> obterTodos() {
+        return (List<Moto>) springDataMotoRepository.findAll();
     }
 
     @Override

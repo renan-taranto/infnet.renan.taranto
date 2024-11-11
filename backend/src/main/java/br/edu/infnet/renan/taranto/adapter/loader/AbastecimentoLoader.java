@@ -1,9 +1,9 @@
 package br.edu.infnet.renan.taranto.adapter.loader;
 
 import br.edu.infnet.renan.taranto.domain.entity.Abastecimento;
-import br.edu.infnet.renan.taranto.domain.entity.HistoricoDespesas;
-import br.edu.infnet.renan.taranto.port.input.usecase.BuscarHistoricoDespesas;
-import br.edu.infnet.renan.taranto.port.input.usecase.SalvarHistoricoDespesa;
+import br.edu.infnet.renan.taranto.domain.entity.Historico;
+import br.edu.infnet.renan.taranto.port.input.usecase.ListarHistoricos;
+import br.edu.infnet.renan.taranto.port.input.usecase.SalvarHistorico;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -14,14 +14,15 @@ import java.util.List;
 @Order(4)
 public class AbastecimentoLoader implements EntityLoader {
     private final LeitorCsv leitorCsv;
-    private final BuscarHistoricoDespesas buscarHistoricoDespesas;
-    private final SalvarHistoricoDespesa salvarHistoricoDespesa;
+    private final ListarHistoricos listarHistoricos;
+    private final SalvarHistorico salvarHistorico;
 
-    public AbastecimentoLoader(LeitorCsv leitorCsv, BuscarHistoricoDespesas buscarHistoricoDespesas, SalvarHistoricoDespesa salvarHistoricoDespesa) {
+    public AbastecimentoLoader(LeitorCsv leitorCsv, ListarHistoricos listarHistoricos, SalvarHistorico salvarHistorico) {
         this.leitorCsv = leitorCsv;
-        this.buscarHistoricoDespesas = buscarHistoricoDespesas;
-        this.salvarHistoricoDespesa = salvarHistoricoDespesa;
+        this.listarHistoricos = listarHistoricos;
+        this.salvarHistorico = salvarHistorico;
     }
+
     @Override
     public void load() {
         List<String[]> dados = leitorCsv.ler("files/despesas.csv");
@@ -30,22 +31,20 @@ public class AbastecimentoLoader implements EntityLoader {
                 continue;
             }
 
-            HistoricoDespesas historicoDespesas = buscarHistoricoPorMotoId(Integer.parseInt(linha[1]));
+            Historico historico = buscarHistoricoPorMotoId(Integer.parseInt(linha[1]));
             Abastecimento abastecimento = new Abastecimento(
                     LocalDate.parse(linha[2]),
                     Float.parseFloat(linha[3]),
                     Float.parseFloat(linha[6]),
                     linha[7]
             );
-            historicoDespesas.adicionarDespesa(abastecimento);
-            salvarHistoricoDespesa.salvar(historicoDespesas);
+            historico.adicionarDespesa(abastecimento);
+            salvarHistorico.salvar(historico);
             System.out.println("Abastecimento carregado: " + abastecimento);
         }
     }
 
-    private HistoricoDespesas buscarHistoricoPorMotoId(int motoId) {
-        return buscarHistoricoDespesas.buscarPorMotoId(motoId).orElseThrow(
-                () -> new RuntimeException("Erro ao criar 'Abastecimento' da 'Moto' de id '" + motoId + "'. 'HistoricoDespesas' não encontrado.")
-        );
+    private Historico buscarHistoricoPorMotoId(int motoId) {
+        return listarHistoricos.listar(motoId).getHistoricos().get(0);
     }
 }
