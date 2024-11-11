@@ -1,7 +1,7 @@
 package br.edu.infnet.renan.taranto.adapter.ui;
 
 import br.edu.infnet.renan.taranto.port.input.usecase.ListarHistoricos;
-import br.edu.infnet.renan.taranto.port.input.usecase.dto.HistoricoResponse;
+import br.edu.infnet.renan.taranto.port.input.usecase.dto.HistoricosResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +15,7 @@ public class ListarHistoricosController {
     }
 
     @GetMapping(value = "/historicos")
-    public HistoricoResponse listar(@RequestParam(name = "motoId", required = false) Integer motoId) {
+    public HistoricosResponse listar(@RequestParam(name = "motoId", required = false) Integer motoId) {
         if (motoId != null) {
             return listarHistoricos.listar(motoId);
         }

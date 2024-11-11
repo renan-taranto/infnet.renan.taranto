@@ -9,4 +9,5 @@ public interface MotoRepository {
     void salvar(Moto moto);
     List<Moto> obterTodos();
     Optional<Moto> buscarPorId(int id);
+    Long contarTodos();
 }

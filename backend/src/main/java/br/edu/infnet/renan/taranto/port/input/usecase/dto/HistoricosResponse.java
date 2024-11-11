@@ -4,11 +4,11 @@ import br.edu.infnet.renan.taranto.domain.entity.Historico;
 
 import java.util.List;
 
-public class HistoricoResponse {
-    private List<Historico> historicos;
-    private Long total;
+public class HistoricosResponse {
+    private final List<Historico> historicos;
+    private final Long total;
 
-    public HistoricoResponse(List<Historico> historicos, Long total) {
+    public HistoricosResponse(List<Historico> historicos, Long total) {
         this.historicos = historicos;
         this.total = total;
     }

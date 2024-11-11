@@ -1,14 +1,15 @@
 <script setup>
-  import createMotosClient from "~/services/historico-motos-client.js";
+  import createMotoClient from "~/services/moto-client.js";
 
   const selectLabel = ref('Selecione...');
   const motos = ref([]);
 
   const carregarMotos = async () => {
     try {
-      const motosClient = createMotosClient();
+      const motosClient = createMotoClient();
       selectLabel.value = 'Carregando...';
-      motos.value = await motosClient.buscarTodos();
+      const response = await motosClient.buscarTodos();
+      motos.value = response.motos;
       selectLabel.value = 'Selecione...';
     } catch (err) {
       selectLabel.value = err.message || 'Erro ao buscar lista de motos.';

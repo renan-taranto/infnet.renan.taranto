@@ -1,6 +1,6 @@
 package br.edu.infnet.renan.taranto.port.input.usecase;
 
-import br.edu.infnet.renan.taranto.port.input.usecase.dto.HistoricoResponse;
+import br.edu.infnet.renan.taranto.port.input.usecase.dto.HistoricosResponse;
 import br.edu.infnet.renan.taranto.port.output.repository.HistoricoRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,15 +12,15 @@ public class ListarHistoricos {
         this.historicoRepository = historicoRepository;
     }
 
-    public HistoricoResponse listar() {
-        return new HistoricoResponse(
+    public HistoricosResponse listar() {
+        return new HistoricosResponse(
                 historicoRepository.obterTodos(),
                 historicoRepository.contarTodos()
         );
     }
 
-    public HistoricoResponse listar(int motoId) {
-        return new HistoricoResponse(
+    public HistoricosResponse listar(int motoId) {
+        return new HistoricosResponse(
                 historicoRepository.obterPorMotoId(motoId),
                 historicoRepository.contarTodos()
         );

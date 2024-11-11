@@ -32,6 +32,10 @@ const items  = ref([
     to: '/',
   },
   {
+    title: 'Motos',
+    to: '/motos',
+  },
+  {
     title: 'Históricos',
     to: '/historicos',
   },

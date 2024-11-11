@@ -29,4 +29,9 @@ public class MotoRepositoryImpl implements MotoRepository {
     public Optional<Moto> buscarPorId(int id) {
         return springDataMotoRepository.findById(id);
     }
+
+    @Override
+    public Long contarTodos() {
+        return springDataMotoRepository.count();
+    }
 }
