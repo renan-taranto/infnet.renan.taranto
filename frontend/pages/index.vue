@@ -9,16 +9,16 @@
       >
         <v-card class="mx-auto my-4" max-width="400">
           <v-card-title class="d-flex align-center">
-            <v-icon class="mr-3">{{ item.icon }}</v-icon> <!-- Motorcycle icon -->
-            <span class="headline">{{ item.title }}</span>
+            <v-icon class="mr-3">{{ item.icon }}</v-icon>
+            <span class="text-h4">{{ item.total }}</span>
           </v-card-title>
 
-          <v-card-subtitle class="display-1" style="font-weight: bold;">
-            {{ item.total }}
+          <v-card-subtitle class="text-h6" style="font-weight: bold;">
+            {{ item.title }}
           </v-card-subtitle>
 
           <v-card-actions>
-            <v-btn color="primary" @click="goTo(item.link)">Ver mais</v-btn>
+            <v-btn color="primary" size="small" @click="goTo(item.link)">Ver mais</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
