@@ -1,7 +1,10 @@
 TipoDespesa,MotoId,Data,Valor,TipoManutencao,Observacoes,LitrosAbastecidos,TipoCombustivel
 manutencao,1,2022-10-13,247.90,Troca de óleo,O óleo saiu bem escuro da troca,,
 manutencao,2,2024-03-23,967.70,Troca das pastilhas de freio dianteiro,A pastilha anterior se desgastou muito rápido,,
+manutencao,2,2024-03-12,1002.32,Troca do Kit Relação,Kit antigo ficou ovalizado,,
 manutencao,3,2024-05-29,210.00,Balanceamento das rodas,O problema do shimmy foi resolvido com essa manutenção,,
+manutencao,3,2024-05-30,193.00,Troca dos Fluidos de Freio,Dot 5.1,,
 abastecimento,1,2022-11-29,25.65,,,5.21,Gasolina Comum
 abastecimento,2,2024-03-24,63.23,,,10.15,Gasolina Aditivada
 abastecimento,3,2024-06-12,91.23,,,15.9,Gasolina Aditivada
+abastecimento,3,2024-06-15,75,,,11.1,Gasolina Aditivada

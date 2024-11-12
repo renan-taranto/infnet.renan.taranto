@@ -6,18 +6,18 @@ import java.util.List;
 
 public class AbastecimentosResponse {
     private final List<Abastecimento> abastecimentos;
-    private final Long count;
+    private final Long total;
 
-    public AbastecimentosResponse(List<Abastecimento> abastecimentos, Long count) {
+    public AbastecimentosResponse(List<Abastecimento> abastecimentos, Long total) {
         this.abastecimentos = abastecimentos;
-        this.count = count;
+        this.total = total;
     }
 
     public List<Abastecimento> getAbastecimentos() {
         return abastecimentos;
     }
 
-    public Long getCount() {
-        return count;
+    public Long getTotal() {
+        return total;
     }
 }

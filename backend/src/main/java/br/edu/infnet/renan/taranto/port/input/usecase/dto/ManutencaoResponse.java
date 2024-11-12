@@ -6,18 +6,18 @@ import java.util.List;
 
 public class ManutencaoResponse {
     private final List<Manutencao> manutencoes;
-    private final Long count;
+    private final Long total;
 
-    public ManutencaoResponse(List<Manutencao> manutencoes, Long count) {
+    public ManutencaoResponse(List<Manutencao> manutencoes, Long total) {
         this.manutencoes = manutencoes;
-        this.count = count;
+        this.total = total;
     }
 
     public List<Manutencao> getManutencoes() {
         return manutencoes;
     }
 
-    public Long getCount() {
-        return count;
+    public Long getTotal() {
+        return total;
     }
 }
