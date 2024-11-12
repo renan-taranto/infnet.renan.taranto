@@ -4,11 +4,11 @@ import br.edu.infnet.renan.taranto.domain.entity.Manutencao;
 
 import java.util.List;
 
-public class ManutencaoResponse {
+public class ManutencoesResponse {
     private final List<Manutencao> manutencoes;
     private final Long total;
 
-    public ManutencaoResponse(List<Manutencao> manutencoes, Long total) {
+    public ManutencoesResponse(List<Manutencao> manutencoes, Long total) {
         this.manutencoes = manutencoes;
         this.total = total;
     }

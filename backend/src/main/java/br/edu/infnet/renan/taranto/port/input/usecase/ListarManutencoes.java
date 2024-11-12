@@ -1,6 +1,6 @@
 package br.edu.infnet.renan.taranto.port.input.usecase;
 
-import br.edu.infnet.renan.taranto.port.input.usecase.dto.ManutencaoResponse;
+import br.edu.infnet.renan.taranto.port.input.usecase.dto.ManutencoesResponse;
 import br.edu.infnet.renan.taranto.port.output.repository.ManutencaoRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ public class ListarManutencoes {
         this.manutencaoRepository = manutencaoRepository;
     }
 
-    public ManutencaoResponse listar() {
-        return new ManutencaoResponse(manutencaoRepository.obterTodos(), manutencaoRepository.contarTodos());
+    public ManutencoesResponse listar() {
+        return new ManutencoesResponse(manutencaoRepository.obterTodos(), manutencaoRepository.contarTodos());
     }
 }
