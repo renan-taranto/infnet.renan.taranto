@@ -1,50 +1,50 @@
 <script setup>
-  import createAbastecimentoClient from "~/services/abastecimento-client.js";
+  import createManutencaoClient from '~/services/manutencao-client.js';
   import {formatDateBR} from "~/utils/date-formatter.js";
   import {formatDecimalPT} from "~/utils/format-decimal.js";
 
   const pending = ref(false);
   const error = ref(null);
-  const abastecimentos = ref(null);
+  const manutencoes = ref(null);
 
   const headers = ref([
     { title: "Id", key: "id" },
     { title: "Valor", key: "valor" },
     { title: "Data", key: "data" },
-    { title: "Litros Abastecidos", key: "litrosAbastecidos" },
-    { title: "Tipo de Combustível", key: "tipoCombustivel" },
+    { title: "Tipo da Manutenção", key: "tipo" },
+    { title: "Observações", key: "observacoes" },
   ])
 
-  const carregarAbastecimentos = async () => {
+  const carregarManutencoes = async () => {
     pending.value = true;
     try {
-      const abastecimentosClient = createAbastecimentoClient();
-      const response = await abastecimentosClient.buscarTodos();
-      abastecimentos.value = response.abastecimentos;
+      const manutencaoClient = createManutencaoClient();
+      const response = await manutencaoClient.buscarTodos();
+      manutencoes.value = response.manutencoes;
     } catch (err) {
-      error.value = err.message || 'Erro ao buscar abastecimentos.';
+      error.value = err.message || 'Erro ao buscar manutencoes.';
     } finally {
       pending.value = false;
     }
   }
 
   onMounted(() => {
-    carregarAbastecimentos();
+    carregarManutencoes();
   })
 </script>
 
 <template>
   <div>
-    <h1 class="mb-8">Abastecimentos</h1>
+    <h1 class="mb-8">Manutenções</h1>
 
     <p v-if="pending">
       Carregando...
     </p>
     <pre v-else-if="error">{{ error }}</pre>
     <v-data-table
-        v-else-if="abastecimentos"
+        v-else-if="manutencoes"
         class="mt-8"
-        :items="abastecimentos"
+        :items="manutencoes"
         :headers="headers"
     >
       <template v-slot:body="{ items }">
@@ -52,8 +52,8 @@
           <td>{{ item.id }}</td>
           <td>{{ formatCurrencyBRL(item.valor) }}</td>
           <td>{{ formatDateBR(item.data) }}</td>
-          <td>{{ formatDecimalPT(item.litrosAbastecidos) }}</td>
-          <td>{{ item.tipoCombustivel }}</td>
+          <td>{{ item.tipo }}</td>
+          <td>{{ item.observacoes }}</td>
         </tr>
       </template>
     </v-data-table>

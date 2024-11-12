@@ -43,6 +43,10 @@ const items  = ref([
     title: 'Abastecimentos',
     to: '/abastecimentos',
   },
+  {
+    title: 'Manutenções',
+    to: '/manutencoes',
+  },
 ]);
 const isWebResolution = computed(() => display.mdAndUp.value);
 

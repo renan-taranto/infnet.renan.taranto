@@ -28,7 +28,7 @@
     <h1 class="mb-8">Motos</h1>
 
     <p v-if="pending">
-      Fetching...
+      Carregando...
     </p>
     <pre v-else-if="error">{{ error }}</pre>
     <v-data-table

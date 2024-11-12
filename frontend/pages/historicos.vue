@@ -39,7 +39,7 @@
     <SelectMoto @motoSelecionada="carregarHistorico" />
 
     <p v-if="pending">
-      Fetching...
+      Carregando...
     </p>
     <pre v-else-if="error">{{ error }}</pre>
     <v-data-table
