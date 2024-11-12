@@ -2,8 +2,8 @@ package br.edu.infnet.renan.taranto.adapter.loader;
 
 import br.edu.infnet.renan.taranto.domain.entity.Historico;
 import br.edu.infnet.renan.taranto.domain.entity.Manutencao;
-import br.edu.infnet.renan.taranto.port.input.usecase.ListarHistoricos;
-import br.edu.infnet.renan.taranto.port.input.usecase.SalvarHistorico;
+import br.edu.infnet.renan.taranto.port.input.usecase.historico.ListarHistoricos;
+import br.edu.infnet.renan.taranto.port.input.usecase.historico.SalvarHistorico;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 

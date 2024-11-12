@@ -1,4 +1,4 @@
-package br.edu.infnet.renan.taranto.port.input.usecase;
+package br.edu.infnet.renan.taranto.port.input.usecase.moto;
 
 import br.edu.infnet.renan.taranto.port.input.usecase.dto.MotosResponse;
 import br.edu.infnet.renan.taranto.port.output.repository.MotoRepository;

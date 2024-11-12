@@ -1,6 +1,6 @@
 package br.edu.infnet.renan.taranto.adapter.ui.abastecimento;
 
-import br.edu.infnet.renan.taranto.port.input.usecase.ListarAbastecimentos;
+import br.edu.infnet.renan.taranto.port.input.usecase.abastecimento.ListarAbastecimentos;
 import br.edu.infnet.renan.taranto.port.input.usecase.dto.AbastecimentosResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

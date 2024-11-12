@@ -1,4 +1,4 @@
-package br.edu.infnet.renan.taranto.port.input.usecase;
+package br.edu.infnet.renan.taranto.port.input.usecase.abastecimento;
 
 import br.edu.infnet.renan.taranto.port.input.usecase.dto.AbastecimentosResponse;
 import br.edu.infnet.renan.taranto.port.output.repository.AbastecimentoRepository;

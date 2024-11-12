@@ -44,7 +44,7 @@
     </p>
     <pre v-else-if="error">{{ error }}</pre>
     <v-data-table
-        v-else-if="historico"
+        v-else-if="historico && historico.despesas.length > 0"
         class="mt-8"
         :items="historico.despesas"
         :headers="headers"
@@ -60,6 +60,10 @@
           <td>{{ 'tipoCombustivel' in item ? item.tipoCombustivel : '-' }}</td>
         </tr>
       </template>
+
     </v-data-table>
+    <v-alert v-if="historico && historico.despesas.length < 1" type="info" color="blue">
+      Nenhuma despesa no histórico ainda.
+    </v-alert>
   </div>
 </template>

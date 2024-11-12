@@ -1,4 +1,4 @@
-package br.edu.infnet.renan.taranto.port.input.usecase;
+package br.edu.infnet.renan.taranto.port.input.usecase.manutenco;
 
 import br.edu.infnet.renan.taranto.port.input.usecase.dto.ManutencoesResponse;
 import br.edu.infnet.renan.taranto.port.output.repository.ManutencaoRepository;

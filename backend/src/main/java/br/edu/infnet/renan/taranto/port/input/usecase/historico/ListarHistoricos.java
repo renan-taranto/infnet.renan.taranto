@@ -1,4 +1,4 @@
-package br.edu.infnet.renan.taranto.port.input.usecase;
+package br.edu.infnet.renan.taranto.port.input.usecase.historico;
 
 import br.edu.infnet.renan.taranto.port.input.usecase.dto.HistoricosResponse;
 import br.edu.infnet.renan.taranto.port.output.repository.HistoricoRepository;

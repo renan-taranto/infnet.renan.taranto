@@ -1,6 +1,6 @@
 package br.edu.infnet.renan.taranto.adapter.ui.historico;
 
-import br.edu.infnet.renan.taranto.port.input.usecase.ListarHistoricos;
+import br.edu.infnet.renan.taranto.port.input.usecase.historico.ListarHistoricos;
 import br.edu.infnet.renan.taranto.port.input.usecase.dto.HistoricosResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
