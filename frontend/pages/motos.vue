@@ -5,11 +5,6 @@
   const error = ref(null);
   const motos = ref(null);
 
-  const headers = ref([
-    { title: "Marca", key: "marca" },
-    { title: "Modelo", key: "modelo" },
-  ]);
-
   const carregarMotos = async () => {
     pending.value = true;
     try {
