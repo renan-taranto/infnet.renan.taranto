@@ -34,6 +34,7 @@
 
 <template>
   <div>
+    <HomeButton />
     <h1 class="mb-8">Históricos</h1>
 
     <SelectMoto @motoSelecionada="carregarHistorico" />

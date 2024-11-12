@@ -35,6 +35,7 @@
 
 <template>
   <div>
+    <HomeButton />
     <h1 class="mb-8">Abastecimentos</h1>
 
     <p v-if="pending">
