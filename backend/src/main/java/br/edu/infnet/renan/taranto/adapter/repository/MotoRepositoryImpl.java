@@ -34,4 +34,9 @@ public class MotoRepositoryImpl implements MotoRepository {
     public Long contarTodos() {
         return springDataMotoRepository.count();
     }
+
+    @Override
+    public void remover(int id) {
+        springDataMotoRepository.deleteById(id);
+    }
 }

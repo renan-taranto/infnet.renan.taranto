@@ -9,4 +9,5 @@ public interface HistoricoRepository {
     List<Historico> obterTodos();
     List<Historico> obterPorMotoId(int motoId);
     Long contarTodos();
+    void remover(int id);
 }

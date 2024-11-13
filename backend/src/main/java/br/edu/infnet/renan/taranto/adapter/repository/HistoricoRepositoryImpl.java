@@ -33,4 +33,9 @@ public class HistoricoRepositoryImpl implements HistoricoRepository {
     public Long contarTodos() {
         return springDataHistoricoRepository.count();
     }
+
+    @Override
+    public void remover(int id) {
+        springDataHistoricoRepository.deleteById(id);
+    }
 }

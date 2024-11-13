@@ -10,4 +10,5 @@ public interface MotoRepository {
     List<Moto> obterTodos();
     Optional<Moto> buscarPorId(int id);
     Long contarTodos();
+    void remover(int id);
 }
