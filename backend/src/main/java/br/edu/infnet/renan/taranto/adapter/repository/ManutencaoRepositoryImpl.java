@@ -5,6 +5,7 @@ import br.edu.infnet.renan.taranto.port.output.repository.ManutencaoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ManutencaoRepositoryImpl implements ManutencaoRepository {
@@ -12,6 +13,16 @@ public class ManutencaoRepositoryImpl implements ManutencaoRepository {
 
     public ManutencaoRepositoryImpl(SpringDataManutencaoRepository springDataManutencaoRepository) {
         this.springDataManutencaoRepository = springDataManutencaoRepository;
+    }
+
+    @Override
+    public Optional<Manutencao> buscarPorId(int id) {
+        return springDataManutencaoRepository.findById(id);
+    }
+
+    @Override
+    public Manutencao salvar(Manutencao manutencao) {
+        return springDataManutencaoRepository.save(manutencao);
     }
 
     @Override

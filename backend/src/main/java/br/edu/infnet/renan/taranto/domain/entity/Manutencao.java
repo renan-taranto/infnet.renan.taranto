@@ -26,8 +26,16 @@ public class Manutencao extends Despesa {
         return tipo;
     }
 
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     public String getObservacoes() {
         return observacoes;
+    }
+
+    public void setObservacoes(String observacoes) {
+        this.observacoes = observacoes;
     }
 
     @Override
