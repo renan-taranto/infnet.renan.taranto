@@ -15,4 +15,8 @@ public class ListarMotos {
     public MotosResponse listar() {
         return new MotosResponse(motoRepository.obterTodos(), motoRepository.contarTodos());
     }
+
+    public MotosResponse listar(String marca) {
+        return new MotosResponse(motoRepository.obterPorMarca(marca), motoRepository.contarTodos());
+    }
 }

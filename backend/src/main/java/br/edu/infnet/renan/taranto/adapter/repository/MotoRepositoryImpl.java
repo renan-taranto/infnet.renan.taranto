@@ -26,6 +26,11 @@ public class MotoRepositoryImpl implements MotoRepository {
     }
 
     @Override
+    public List<Moto> obterPorMarca(String marca) {
+        return (List<Moto>) springDataMotoRepository.findAllByMarca(marca);
+    }
+
+    @Override
     public Optional<Moto> buscarPorId(int id) {
         return springDataMotoRepository.findById(id);
     }
