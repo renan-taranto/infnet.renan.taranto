@@ -1,9 +1,8 @@
 package br.edu.infnet.renan.taranto.adapter.loader;
 
 import br.edu.infnet.renan.taranto.domain.entity.Abastecimento;
-import br.edu.infnet.renan.taranto.domain.entity.Historico;
-import br.edu.infnet.renan.taranto.port.input.usecase.historico.ListarHistoricos;
-import br.edu.infnet.renan.taranto.port.input.usecase.historico.SalvarHistorico;
+import br.edu.infnet.renan.taranto.domain.entity.Endereco;
+import br.edu.infnet.renan.taranto.port.input.usecase.abastecimento.IncluirAbastecimento;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -14,13 +13,11 @@ import java.util.List;
 @Order(2)
 public class AbastecimentoLoader implements EntityLoader {
     private final LeitorCsv leitorCsv;
-    private final ListarHistoricos listarHistoricos;
-    private final SalvarHistorico salvarHistorico;
+    private final IncluirAbastecimento incluirAbastecimento;
 
-    public AbastecimentoLoader(LeitorCsv leitorCsv, ListarHistoricos listarHistoricos, SalvarHistorico salvarHistorico) {
+    public AbastecimentoLoader(LeitorCsv leitorCsv, IncluirAbastecimento incluirAbastecimento) {
         this.leitorCsv = leitorCsv;
-        this.listarHistoricos = listarHistoricos;
-        this.salvarHistorico = salvarHistorico;
+        this.incluirAbastecimento = incluirAbastecimento;
     }
 
     @Override
@@ -31,20 +28,16 @@ public class AbastecimentoLoader implements EntityLoader {
                 continue;
             }
 
-            Historico historico = buscarHistoricoPorMotoId(Integer.parseInt(linha[1]));
             Abastecimento abastecimento = new Abastecimento(
                     LocalDate.parse(linha[2]),
                     Float.parseFloat(linha[3]),
                     Float.parseFloat(linha[6]),
                     linha[7]
             );
-            historico.adicionarDespesa(abastecimento);
-            salvarHistorico.salvar(historico);
+            abastecimento.setEndereco(new Endereco(linha[8]));
+            incluirAbastecimento.incluir(Integer.parseInt(linha[1]), abastecimento);
+
             System.out.println("Abastecimento carregado: " + abastecimento);
         }
-    }
-
-    private Historico buscarHistoricoPorMotoId(int motoId) {
-        return listarHistoricos.listar(motoId).getHistoricos().get(0);
     }
 }

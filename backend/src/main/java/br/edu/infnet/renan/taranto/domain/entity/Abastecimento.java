@@ -1,8 +1,6 @@
 package br.edu.infnet.renan.taranto.domain.entity;
 
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -11,6 +9,8 @@ import java.time.LocalDate;
 public class Abastecimento extends Despesa {
     private float litrosAbastecidos;
     private String tipoCombustivel;
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    private Endereco endereco;
 
     public Abastecimento() {
 
@@ -38,11 +38,20 @@ public class Abastecimento extends Despesa {
         this.tipoCombustivel = tipoCombustivel;
     }
 
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
     @Override
     public String toString() {
         return "Abastecimento{" +
                 "litrosAbastecidos=" + litrosAbastecidos +
                 ", tipoCombustivel='" + tipoCombustivel + '\'' +
+                ", endereco=" + endereco +
                 "} " + super.toString();
     }
 }

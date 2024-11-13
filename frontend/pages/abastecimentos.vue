@@ -13,6 +13,7 @@
     { title: "Data", key: "data" },
     { title: "Litros Abastecidos", key: "litrosAbastecidos" },
     { title: "Tipo de Combustível", key: "tipoCombustivel" },
+    { title: "Cep do Posto de Combustível", key: "endereco.cep" },
   ])
 
   const carregarAbastecimentos = async () => {
@@ -55,6 +56,7 @@
           <td>{{ formatDateBR(item.data) }}</td>
           <td>{{ formatDecimalPT(item.litrosAbastecidos) }}</td>
           <td>{{ item.tipoCombustivel }}</td>
+          <td>{{ item.endereco.cep }}</td>
         </tr>
       </template>
     </v-data-table>
