@@ -1,9 +1,7 @@
 package br.edu.infnet.renan.taranto.adapter.loader;
 
-import br.edu.infnet.renan.taranto.domain.entity.Historico;
 import br.edu.infnet.renan.taranto.domain.entity.Manutencao;
-import br.edu.infnet.renan.taranto.port.input.usecase.historico.ListarHistoricos;
-import br.edu.infnet.renan.taranto.port.input.usecase.historico.SalvarHistorico;
+import br.edu.infnet.renan.taranto.port.input.usecase.manutenco.IncluirManutencao;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -14,13 +12,11 @@ import java.util.List;
 @Order(3)
 public class ManutencaoLoader implements EntityLoader {
     private final LeitorCsv leitorCsv;
-    private final ListarHistoricos listarHistoricos;
-    private final SalvarHistorico salvarHistorico;
+    private final IncluirManutencao incluirManutencao;
 
-    public ManutencaoLoader(LeitorCsv leitorCsv, ListarHistoricos listarHistoricos, SalvarHistorico salvarHistorico) {
+    public ManutencaoLoader(LeitorCsv leitorCsv, IncluirManutencao incluirManutencao) {
         this.leitorCsv = leitorCsv;
-        this.listarHistoricos = listarHistoricos;
-        this.salvarHistorico = salvarHistorico;
+        this.incluirManutencao = incluirManutencao;
     }
 
     @Override
@@ -31,20 +27,14 @@ public class ManutencaoLoader implements EntityLoader {
                 continue;
             }
 
-            Historico historico = buscarHistoricoPorMotoId(Integer.parseInt(linha[1]));
             Manutencao manutencao = new Manutencao(
                     LocalDate.parse(linha[2]),
                     Float.parseFloat(linha[3]),
                     linha[4],
                     linha[5]
             );
-            historico.adicionarDespesa(manutencao);
-            salvarHistorico.salvar(historico);
+            incluirManutencao.incluir(Integer.parseInt(linha[1]), manutencao);
             System.out.println("Manutencao carregada: " + manutencao);
         }
-    }
-
-    private Historico buscarHistoricoPorMotoId(int motoId) {
-        return listarHistoricos.listar(motoId).getHistoricos().get(0);
     }
 }
