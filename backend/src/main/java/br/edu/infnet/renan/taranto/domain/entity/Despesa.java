@@ -6,7 +6,8 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "despesa")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "entity_type")
 public abstract class Despesa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,8 +32,16 @@ public abstract class Despesa {
         return data;
     }
 
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
     public float getValor() {
         return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
     }
 
     @Override

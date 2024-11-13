@@ -46,6 +46,10 @@ public class Historico {
         this.despesas.add(despesa);
     }
 
+    public void removerDespesa(int id) {
+        this.despesas.removeIf(despesa -> despesa.getId() == id);
+    }
+
     public LocalDate getDataCriacao() {
         return dataCriacao;
     }

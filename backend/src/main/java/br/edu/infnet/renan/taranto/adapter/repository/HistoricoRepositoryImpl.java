@@ -5,6 +5,7 @@ import br.edu.infnet.renan.taranto.port.output.repository.HistoricoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class HistoricoRepositoryImpl implements HistoricoRepository {
@@ -15,18 +16,23 @@ public class HistoricoRepositoryImpl implements HistoricoRepository {
     }
 
     @Override
-    public void salvar(Historico historico) {
-        springDataHistoricoRepository.save(historico);
+    public Historico salvar(Historico historico) {
+        return springDataHistoricoRepository.save(historico);
     }
 
     @Override
     public List<Historico> obterTodos() {
-        return (List<Historico>) springDataHistoricoRepository.findAll();
+        return springDataHistoricoRepository.findAll();
     }
 
     @Override
-    public List<Historico> obterPorMotoId(int motoId) {
-        return springDataHistoricoRepository.findAllByMotoId(motoId);
+    public Optional<Historico> obterPorMotoId(int motoId) {
+        return springDataHistoricoRepository.findByMotoId(motoId);
+    }
+
+    @Override
+    public Optional<Historico> obterPorDespesaId(int despesaId) {
+        return springDataHistoricoRepository.findByDespesasId(despesaId);
     }
 
     @Override

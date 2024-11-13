@@ -16,8 +16,8 @@ public class MotoRepositoryImpl implements MotoRepository {
     }
 
     @Override
-    public void salvar(Moto moto) {
-        springDataMotoRepository.save(moto);
+    public Moto salvar(Moto moto) {
+        return springDataMotoRepository.save(moto);
     }
 
     @Override

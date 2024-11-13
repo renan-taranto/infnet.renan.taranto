@@ -1,12 +1,10 @@
 package br.edu.infnet.renan.taranto.port.input.usecase.moto;
 
 import br.edu.infnet.renan.taranto.domain.entity.Historico;
-import br.edu.infnet.renan.taranto.domain.entity.Moto;
+import br.edu.infnet.renan.taranto.port.input.usecase.exception.EntidadeNaoEncontradaException;
 import br.edu.infnet.renan.taranto.port.output.repository.HistoricoRepository;
 import br.edu.infnet.renan.taranto.port.output.repository.MotoRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class ExcluirMoto {
@@ -18,11 +16,12 @@ public class ExcluirMoto {
         this.historicoRepository = historicoRepository;
     }
 
-    public boolean excluirMoto(int id) {
-        Historico historico = historicoRepository.obterPorMotoId(id).get(0);
+    public void excluirMoto(int id) {
+        motoRepository.buscarPorId(id).orElseThrow(EntidadeNaoEncontradaException::new);
+
+        Historico historico = historicoRepository.obterPorMotoId(id).orElseThrow(EntidadeNaoEncontradaException::new);
         historicoRepository.remover(historico.getId());
 
         motoRepository.remover(id);
-        return true;
     }
 }

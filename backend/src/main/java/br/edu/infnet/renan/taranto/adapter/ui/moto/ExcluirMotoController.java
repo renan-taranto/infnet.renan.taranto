@@ -17,11 +17,7 @@ public class ExcluirMotoController {
 
     @DeleteMapping(value = "/motos/{id}")
     public ResponseEntity<String> excluir(@PathVariable Integer id) {
-
-        if(excluirMoto.excluirMoto(id)) {
-            return ResponseEntity.noContent().build();
-        }
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        excluirMoto.excluirMoto(id);
+        return ResponseEntity.noContent().build();
     }
 }

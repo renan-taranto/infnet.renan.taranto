@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MotoRepository {
-    void salvar(Moto moto);
+    Moto salvar(Moto moto);
     List<Moto> obterTodos();
     Optional<Moto> buscarPorId(int id);
     Long contarTodos();

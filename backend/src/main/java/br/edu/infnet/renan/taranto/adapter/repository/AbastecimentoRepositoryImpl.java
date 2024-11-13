@@ -5,6 +5,7 @@ import br.edu.infnet.renan.taranto.port.output.repository.AbastecimentoRepositor
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class AbastecimentoRepositoryImpl implements AbastecimentoRepository {
@@ -20,7 +21,17 @@ public class AbastecimentoRepositoryImpl implements AbastecimentoRepository {
     }
 
     @Override
+    public Optional<Abastecimento> buscarPorId(int id) {
+        return springDataAbastecimentoRepository.findById(id);
+    }
+
+    @Override
     public Long contarTodos() {
         return springDataAbastecimentoRepository.count();
+    }
+
+    @Override
+    public Abastecimento salvar(Abastecimento abastecimento) {
+        return springDataAbastecimentoRepository.save(abastecimento);
     }
 }

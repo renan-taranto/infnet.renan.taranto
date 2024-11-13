@@ -1,12 +1,13 @@
 package br.edu.infnet.renan.taranto.domain.entity;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "manutencao")
+@DiscriminatorValue("manutencao")
 public class Manutencao extends Despesa {
     private String tipo;
     private String observacoes;
