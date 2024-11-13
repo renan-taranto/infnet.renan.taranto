@@ -1,14 +1,25 @@
 package br.edu.infnet.renan.taranto.domain.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
 @Entity
 @DiscriminatorValue("abastecimento")
 public class Abastecimento extends Despesa {
+    @NotNull(message = "Este valor não pode ser nulo.")
     private float litrosAbastecidos;
+
+    @NotBlank(message = "Este valor não pode ser vazio.")
+    @Size(max = 20, message = "Este valor ter no máximo 20 caracteres.")
     private String tipoCombustivel;
+
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Endereco endereco;
 

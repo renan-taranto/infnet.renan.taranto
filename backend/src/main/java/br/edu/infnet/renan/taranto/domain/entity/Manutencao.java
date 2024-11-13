@@ -3,13 +3,20 @@ package br.edu.infnet.renan.taranto.domain.entity;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
 @Entity
 @DiscriminatorValue("manutencao")
 public class Manutencao extends Despesa {
+    @NotBlank(message = "Este valor não pode ser vazio.")
+    @Size(max = 50, message = "Este valor ter no máximo 50 caracteres.")
     private String tipo;
+
+    @NotBlank(message = "Este valor não pode ser vazio.")
+    @Size(max = 250, message = "Este valor ter no máximo 250 caracteres.")
     private String observacoes;
 
     public Manutencao() {

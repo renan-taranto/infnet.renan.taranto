@@ -1,6 +1,7 @@
 package br.edu.infnet.renan.taranto.domain.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "endereco")
@@ -8,6 +9,7 @@ public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotNull(message = "Este valor não pode ser nulo.")
     private String cep;
     private String logradouro;
     private String complemento;

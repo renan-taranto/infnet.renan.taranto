@@ -2,6 +2,7 @@ package br.edu.infnet.renan.taranto.adapter.ui.moto;
 
 import br.edu.infnet.renan.taranto.domain.entity.Moto;
 import br.edu.infnet.renan.taranto.port.input.usecase.moto.IncluirMoto;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,7 @@ public class IncluirMotoController {
     }
 
     @PostMapping("/motos")
-    public ResponseEntity<String> incluir(@RequestBody Moto moto) {
+    public ResponseEntity<String> incluir(@Valid @RequestBody Moto moto) {
         incluirMoto.incluir(moto, LocalDate.now());
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
