@@ -3,6 +3,7 @@ package br.edu.infnet.renan.taranto.port.input.usecase.historico;
 import br.edu.infnet.renan.taranto.domain.entity.Historico;
 import br.edu.infnet.renan.taranto.port.input.usecase.dto.HistoricosResponse;
 import br.edu.infnet.renan.taranto.port.output.repository.HistoricoRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -18,7 +19,7 @@ public class ListarHistoricos {
 
     public HistoricosResponse listar() {
         return new HistoricosResponse(
-                historicoRepository.obterTodos(),
+                historicoRepository.obterTodos(Sort.by(Sort.Order.desc("dataCriacao"))),
                 historicoRepository.contarTodos()
         );
     }

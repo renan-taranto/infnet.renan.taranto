@@ -2,6 +2,7 @@ package br.edu.infnet.renan.taranto.port.input.usecase.moto;
 
 import br.edu.infnet.renan.taranto.port.input.usecase.dto.MotosResponse;
 import br.edu.infnet.renan.taranto.port.output.repository.MotoRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,7 +14,10 @@ public class ListarMotos {
     }
 
     public MotosResponse listar() {
-        return new MotosResponse(motoRepository.obterTodos(), motoRepository.contarTodos());
+        return new MotosResponse(
+                motoRepository.obterTodos(Sort.by(Sort.Order.asc("marca"))),
+                motoRepository.contarTodos()
+        );
     }
 
     public MotosResponse listar(String marca) {

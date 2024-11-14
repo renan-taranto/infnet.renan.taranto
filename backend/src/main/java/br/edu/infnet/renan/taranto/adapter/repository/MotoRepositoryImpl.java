@@ -2,6 +2,7 @@ package br.edu.infnet.renan.taranto.adapter.repository;
 
 import br.edu.infnet.renan.taranto.domain.entity.Moto;
 import br.edu.infnet.renan.taranto.port.output.repository.MotoRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,13 +22,13 @@ public class MotoRepositoryImpl implements MotoRepository {
     }
 
     @Override
-    public List<Moto> obterTodos() {
-        return (List<Moto>) springDataMotoRepository.findAll();
+    public List<Moto> obterTodos(Sort by) {
+        return springDataMotoRepository.findAll(by);
     }
 
     @Override
     public List<Moto> obterPorMarca(String marca) {
-        return (List<Moto>) springDataMotoRepository.findAllByMarca(marca);
+        return springDataMotoRepository.findAllByMarca(marca);
     }
 
     @Override

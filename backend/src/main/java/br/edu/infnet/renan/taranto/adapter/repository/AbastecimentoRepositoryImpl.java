@@ -2,6 +2,7 @@ package br.edu.infnet.renan.taranto.adapter.repository;
 
 import br.edu.infnet.renan.taranto.domain.entity.Abastecimento;
 import br.edu.infnet.renan.taranto.port.output.repository.AbastecimentoRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,8 +17,8 @@ public class AbastecimentoRepositoryImpl implements AbastecimentoRepository {
     }
 
     @Override
-    public List<Abastecimento> obterTodos() {
-        return (List<Abastecimento>) springDataAbastecimentoRepository.findAll();
+    public List<Abastecimento> obterTodos(Sort by) {
+        return springDataAbastecimentoRepository.findAll(by);
     }
 
     @Override

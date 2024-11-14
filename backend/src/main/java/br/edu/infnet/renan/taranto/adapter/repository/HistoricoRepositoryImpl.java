@@ -2,6 +2,7 @@ package br.edu.infnet.renan.taranto.adapter.repository;
 
 import br.edu.infnet.renan.taranto.domain.entity.Historico;
 import br.edu.infnet.renan.taranto.port.output.repository.HistoricoRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,8 +22,8 @@ public class HistoricoRepositoryImpl implements HistoricoRepository {
     }
 
     @Override
-    public List<Historico> obterTodos() {
-        return springDataHistoricoRepository.findAll();
+    public List<Historico> obterTodos(Sort by) {
+        return springDataHistoricoRepository.findAll(by);
     }
 
     @Override
