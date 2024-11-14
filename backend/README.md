@@ -28,106 +28,174 @@ O projeto utiliza a Arquitetura Hexagonal.
 ## Diagrama de Classes UML
 ```mermaid
 classDiagram
-direction BT
-class Abastecimento {
-  + Abastecimento(LocalDate, float, float) 
-  - float litrosAbastecidos
-  + toString() String
-   float litrosAbastecidos
-}
-class AbastecimentoObserver {
-  + AbastecimentoObserver() 
-  + criarDespesa(String[], HistoricoDespesas) void
-}
-class Application {
-  + Application() 
-  + main(String[]) void
-}
-class ApplicationTests {
-  + ApplicationTests() 
-  ~ contextLoads() void
-}
-class Despesa {
-  + Despesa(LocalDate, float) 
-  - float valor
-  - LocalDate data
-  + toString() String
-   LocalDate data
-   float valor
-}
-class DespesaObserver {
-<<Interface>>
-  + criarDespesa(String[], HistoricoDespesas) void
-}
-class HistoricoDespesas {
-  + HistoricoDespesas(Moto) 
-  - Moto moto
-  - List~Despesa~ despesas
-  + adicionarDespesa(Despesa) void
-  + toString() String
-   Moto moto
-   List~Despesa~ despesas
-}
-class HistoricoDespesasRepository {
-  + HistoricoDespesasRepository() 
-  + incluir(HistoricoDespesas) void
-  + obterTodos() List~HistoricoDespesas~
-}
-class HistoricoDespesasRepository {
-<<Interface>>
-  + obterTodos() List~HistoricoDespesas~
-  + incluir(HistoricoDespesas) void
-}
-class ListarHistoricos {
-  + ListarHistoricos(HistoricoDespesasRepository) 
-  + listar() List~HistoricoDespesas~
-}
-class ListarHistoricosController {
-  + ListarHistoricosController(ListarHistoricos) 
-  + listar() List~HistoricoDespesas~
-}
-class Loader {
-  + Loader(List~DespesaObserver~, HistoricoDespesasRepository) 
-  - carregarHistorico() void
-  - obterOuCriarHistorico(Map~Integer, HistoricoDespesas~, int) HistoricoDespesas
-  - notificarObservers(String[], HistoricoDespesas) void
-  - incluir(Collection~HistoricoDespesas~) void
-  + run(ApplicationArguments) void
-}
-class Manutencao {
-  + Manutencao(LocalDate, float, String) 
-  - String tipo
-  + toString() String
-   String tipo
-}
-class ManutencaoObserver {
-  + ManutencaoObserver() 
-  + criarDespesa(String[], HistoricoDespesas) void
-}
-class Moto {
-  + Moto(int) 
-  - int id
-  + toString() String
-   int id
-}
-class MotoLoader {
-  + MotoLoader() 
-}
+  direction BT
+  class Abastecimento
+  class AbastecimentoLoader
+  class AbastecimentoRepository {
+    <<Interface>>
 
-Abastecimento  -->  Despesa 
-AbastecimentoObserver  ..>  Abastecimento : «create»
-AbastecimentoObserver  ..>  DespesaObserver 
-HistoricoDespesas "1" *--> "despesas *" Despesa 
-HistoricoDespesas "1" *--> "moto 1" Moto 
-HistoricoDespesasRepository "1" *--> "historicos *" HistoricoDespesas 
-HistoricoDespesasRepository  ..>  HistoricoDespesasRepository 
-ListarHistoricos "1" *--> "historicoRepository 1" HistoricoDespesasRepository 
-ListarHistoricosController "1" *--> "listarHistoricos 1" ListarHistoricos 
-Loader "1" *--> "observers *" DespesaObserver 
-Loader  ..>  HistoricoDespesas : «create»
-Loader "1" *--> "historicoRepository 1" HistoricoDespesasRepository 
-Loader  ..>  Moto : «create»
-Manutencao  -->  Despesa 
-ManutencaoObserver  ..>  DespesaObserver 
-ManutencaoObserver  ..>  Manutencao : «create»
+  }
+  class AbastecimentoRepositoryImpl
+  class AbastecimentosResponse
+  class AlterarAbastecimento
+  class AlterarAbastecimentoController
+  class AlterarManutencao
+  class AlterarManutencaoController
+  class AlterarMoto
+  class AlterarMotoController
+  class AppDataLoader
+  class Application
+  class ApplicationTests
+  class Despesa
+  class DespesasResponse
+  class Endereco
+  class EnderecoClient {
+    <<Interface>>
+
+  }
+  class EntidadeNaoEncontradaException
+  class EntityLoader {
+    <<Interface>>
+
+  }
+  class ExcluirAbastecimento
+  class ExcluirAbastecimentoController
+  class ExcluirManutencao
+  class ExcluirManutencaoController
+  class ExcluirMoto
+  class ExcluirMotoController
+  class FeignEnderecoClient {
+    <<Interface>>
+
+  }
+  class FeignEnderecoClientImpl
+  class GlobalExceptionHandler
+  class Historico
+  class HistoricoRepository {
+    <<Interface>>
+
+  }
+  class HistoricoRepositoryImpl
+  class HistoricosResponse
+  class IncluirAbastecimento
+  class IncluirAbastecimentoController
+  class IncluirManutencao
+  class IncluirManutencaoController
+  class IncluirMoto
+  class IncluirMotoController
+  class LeitorCsv
+  class ListarAbastecimentos
+  class ListarAbastecimentosController
+  class ListarHistoricos
+  class ListarHistoricosController
+  class ListarManutencoes
+  class ListarManutencoesController
+  class ListarMotos
+  class ListarMotosController
+  class Manutencao
+  class ManutencaoLoader
+  class ManutencaoRepository {
+    <<Interface>>
+
+  }
+  class ManutencaoRepositoryImpl
+  class ManutencoesResponse
+  class Moto
+  class MotoLoader
+  class MotoRepository {
+    <<Interface>>
+
+  }
+  class MotoRepositoryImpl
+  class MotosResponse
+  class SalvarHistorico
+  class SpringDataAbastecimentoRepository {
+    <<Interface>>
+
+  }
+  class SpringDataHistoricoRepository {
+    <<Interface>>
+
+  }
+  class SpringDataManutencaoRepository {
+    <<Interface>>
+
+  }
+  class SpringDataMotoRepository {
+    <<Interface>>
+
+  }
+  class SwaggerConfig
+
+  Abastecimento  -->  Despesa
+  Abastecimento "1" *--> "endereco 1" Endereco
+  AbastecimentoLoader  ..>  Abastecimento : «create»
+  AbastecimentoLoader  ..>  Endereco : «create»
+  AbastecimentoLoader  ..>  EntityLoader
+  AbastecimentoLoader "1" *--> "incluirAbastecimento 1" IncluirAbastecimento
+  AbastecimentoLoader "1" *--> "leitorCsv 1" LeitorCsv
+  AbastecimentoRepositoryImpl  ..>  AbastecimentoRepository
+  AbastecimentoRepositoryImpl "1" *--> "springDataAbastecimentoRepository 1" SpringDataAbastecimentoRepository
+  AbastecimentosResponse "1" *--> "abastecimentos *" Abastecimento
+  AlterarAbastecimento "1" *--> "abastecimentoRepository 1" AbastecimentoRepository
+  AlterarAbastecimento "1" *--> "enderecoClient 1" EnderecoClient
+  AlterarAbastecimentoController "1" *--> "alterarAbastecimento 1" AlterarAbastecimento
+  AlterarManutencao "1" *--> "manutencaoRepository 1" ManutencaoRepository
+  AlterarManutencaoController "1" *--> "alterarManutencao 1" AlterarManutencao
+  AlterarMoto "1" *--> "motoRepository 1" MotoRepository
+  AlterarMotoController "1" *--> "alterarMoto 1" AlterarMoto
+  AppDataLoader "1" *--> "entityLoaders *" EntityLoader
+  DespesasResponse "1" *--> "despesas *" Despesa
+  ExcluirAbastecimento "1" *--> "historicoRepository 1" HistoricoRepository
+  ExcluirAbastecimentoController "1" *--> "excluirAbastecimento 1" ExcluirAbastecimento
+  ExcluirManutencao "1" *--> "historicoRepository 1" HistoricoRepository
+  ExcluirManutencaoController "1" *--> "excluirManutencao 1" ExcluirManutencao
+  ExcluirMoto "1" *--> "historicoRepository 1" HistoricoRepository
+  ExcluirMoto "1" *--> "motoRepository 1" MotoRepository
+  ExcluirMotoController "1" *--> "excluirMoto 1" ExcluirMoto
+  FeignEnderecoClientImpl  ..>  EnderecoClient
+  FeignEnderecoClientImpl "1" *--> "feignEnderecoClient 1" FeignEnderecoClient
+  Historico "1" *--> "despesas *" Despesa
+  Historico "1" *--> "moto 1" Moto
+  HistoricoRepositoryImpl  ..>  HistoricoRepository
+  HistoricoRepositoryImpl "1" *--> "springDataHistoricoRepository 1" SpringDataHistoricoRepository
+  HistoricosResponse "1" *--> "historicos *" Historico
+  IncluirAbastecimento "1" *--> "enderecoClient 1" EnderecoClient
+  IncluirAbastecimento "1" *--> "historicoRepository 1" HistoricoRepository
+  IncluirAbastecimentoController "1" *--> "incluirAbastecimento 1" IncluirAbastecimento
+  IncluirManutencao "1" *--> "historicoRepository 1" HistoricoRepository
+  IncluirManutencaoController "1" *--> "incluirManutencao 1" IncluirManutencao
+  IncluirMoto  ..>  Historico : «create»
+  IncluirMoto "1" *--> "historicoRepository 1" HistoricoRepository
+  IncluirMoto "1" *--> "motoRepository 1" MotoRepository
+  IncluirMotoController "1" *--> "incluirMoto 1" IncluirMoto
+  ListarAbastecimentos "1" *--> "abastecimentoRepository 1" AbastecimentoRepository
+  ListarAbastecimentos  ..>  AbastecimentosResponse : «create»
+  ListarAbastecimentosController "1" *--> "listarAbastecimentos 1" ListarAbastecimentos
+  ListarHistoricos "1" *--> "historicoRepository 1" HistoricoRepository
+  ListarHistoricos  ..>  HistoricosResponse : «create»
+  ListarHistoricosController "1" *--> "listarHistoricos 1" ListarHistoricos
+  ListarManutencoes "1" *--> "manutencaoRepository 1" ManutencaoRepository
+  ListarManutencoes  ..>  ManutencoesResponse : «create»
+  ListarManutencoesController "1" *--> "listarManutencoes 1" ListarManutencoes
+  ListarMotos "1" *--> "motoRepository 1" MotoRepository
+  ListarMotos  ..>  MotosResponse : «create»
+  ListarMotosController "1" *--> "listarMotos 1" ListarMotos
+  Manutencao  -->  Despesa
+  ManutencaoLoader  ..>  EntityLoader
+  ManutencaoLoader "1" *--> "incluirManutencao 1" IncluirManutencao
+  ManutencaoLoader "1" *--> "leitorCsv 1" LeitorCsv
+  ManutencaoLoader  ..>  Manutencao : «create»
+  ManutencaoRepositoryImpl  ..>  ManutencaoRepository
+  ManutencaoRepositoryImpl "1" *--> "springDataManutencaoRepository 1" SpringDataManutencaoRepository
+  ManutencoesResponse "1" *--> "manutencoes *" Manutencao
+  MotoLoader  ..>  EntityLoader
+  MotoLoader "1" *--> "incluirMoto 1" IncluirMoto
+  MotoLoader "1" *--> "leitorCsv 1" LeitorCsv
+  MotoLoader  ..>  Moto : «create»
+  MotoRepositoryImpl  ..>  MotoRepository
+  MotoRepositoryImpl "1" *--> "springDataMotoRepository 1" SpringDataMotoRepository
+  MotosResponse "1" *--> "motos *" Moto
+  SalvarHistorico "1" *--> "historicoRepository 1" HistoricoRepository
+
 ```
