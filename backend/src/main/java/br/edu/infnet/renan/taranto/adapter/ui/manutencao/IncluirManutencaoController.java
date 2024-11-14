@@ -2,6 +2,8 @@ package br.edu.infnet.renan.taranto.adapter.ui.manutencao;
 
 import br.edu.infnet.renan.taranto.domain.entity.Manutencao;
 import br.edu.infnet.renan.taranto.port.input.usecase.manutenco.IncluirManutencao;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,8 @@ public class IncluirManutencaoController {
     }
 
     @PostMapping("/motos/{motoId}/manutencoes")
+    @Tag(name = "Manutenções")
+    @Operation(summary = "Inclui uma manutenção")
     public ResponseEntity<String> incluir(@PathVariable int motoId, @Valid @RequestBody Manutencao manutencao) {
         incluirManutencao.incluir(motoId, manutencao);
 

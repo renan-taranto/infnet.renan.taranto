@@ -2,6 +2,8 @@ package br.edu.infnet.renan.taranto.adapter.ui.moto;
 
 import br.edu.infnet.renan.taranto.domain.entity.Moto;
 import br.edu.infnet.renan.taranto.port.input.usecase.moto.AlterarMoto;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +20,8 @@ public class AlterarMotoController {
     }
 
     @PutMapping("/motos/{id}")
+    @Tag(name = "Motos")
+    @Operation(summary = "Altera uma moto")
     public ResponseEntity<Moto> alterar(@PathVariable int id, @Valid @RequestBody Moto moto) {
         Moto motoAtualizada = alterarMoto.alterar(id, moto);
 

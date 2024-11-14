@@ -2,6 +2,8 @@ package br.edu.infnet.renan.taranto.adapter.ui.abastecimento;
 
 import br.edu.infnet.renan.taranto.port.input.usecase.abastecimento.ListarAbastecimentos;
 import br.edu.infnet.renan.taranto.port.input.usecase.dto.AbastecimentosResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +17,8 @@ public class ListarAbastecimentosController {
     }
 
     @GetMapping(value = "/abastecimentos")
+    @Tag(name = "Abastecimento")
+    @Operation(summary = "Lista abastecimentos")
     public AbastecimentosResponse listar(
             @RequestParam(name = "valorMinimo", required = false) Float valorMinimo,
             @RequestParam(name = "valorMaximo", required = false) Float valorMaximo

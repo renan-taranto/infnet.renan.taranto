@@ -2,6 +2,8 @@ package br.edu.infnet.renan.taranto.adapter.ui.abastecimento;
 
 import br.edu.infnet.renan.taranto.domain.entity.Abastecimento;
 import br.edu.infnet.renan.taranto.port.input.usecase.abastecimento.AlterarAbastecimento;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +20,8 @@ public class AlterarAbastecimentoController {
     }
 
     @PutMapping("/abastecimentos/{id}")
+    @Tag(name = "Abastecimento")
+    @Operation(summary = "Altera um abastecimento")
     public ResponseEntity<Abastecimento> alterar(@PathVariable int id, @Valid @RequestBody Abastecimento abastecimento) {
         Abastecimento abstecimentoAtualizado = alterarAbastecimento.alterar(id, abastecimento);
 

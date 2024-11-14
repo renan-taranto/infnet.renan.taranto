@@ -1,6 +1,7 @@
 package br.edu.infnet.renan.taranto.adapter.ui;
 
 import br.edu.infnet.renan.taranto.port.input.usecase.exception.EntidadeNaoEncontradaException;
+import feign.FeignException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -26,5 +27,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(EntidadeNaoEncontradaException.class)
     public ResponseEntity<Object> handleValidationExceptions(EntidadeNaoEncontradaException ex) {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(FeignException.FeignClientException.class)
+    public ResponseEntity<Object> handleFeignExceptions(FeignException ex) {
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }
