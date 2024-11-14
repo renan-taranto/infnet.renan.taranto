@@ -2,8 +2,7 @@
 
 Esta é a primeira entrega do projeto em Spring.
 
-Trata-se de uma API básica para registrar as despesas que pilotos possuem com suas motocicletas.
-Os dados são carregados de um arquivo CSV.
+Trata-se de uma API básica para registrar as despesas que pilotos possuem com suas motocicletas. O projeto também possui um frontend pra exibir os dados da API.
 
 ## Tecnologias Utilizadas
 
@@ -48,10 +47,11 @@ Acesse o diretório `frontend` e execute
 > 
 > npm run dev
 
-## Endpoints
+## Utilização
 
-- "/historico"
-    - Lista todos os históricos de despesas cadastrados.
+- Host da interface Web: http://localhost:3000/
+- Host da API: http://localhost:8080/
+- Para conhecer os endpoints disponíveis, acesse o **Swagger** em http://localhost:8080/swagger-ui/index.html
 
 ## Diagrama de Classes UML
 ```mermaid
