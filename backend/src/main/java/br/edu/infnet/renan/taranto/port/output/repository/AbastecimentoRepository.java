@@ -7,6 +7,7 @@ import java.util.Optional;
 
 public interface AbastecimentoRepository {
     List<Abastecimento> obterTodos();
+    List<Abastecimento> obterPorValor(float valorMinimo, float valorMaximo);
     Optional<Abastecimento> buscarPorId(int id);
     Long contarTodos();
     Abastecimento salvar(Abastecimento abastecimento);

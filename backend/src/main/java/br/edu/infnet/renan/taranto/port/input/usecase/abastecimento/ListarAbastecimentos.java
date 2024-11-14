@@ -15,4 +15,8 @@ public class ListarAbastecimentos {
     public AbastecimentosResponse listar() {
         return new AbastecimentosResponse(abastecimentoRepository.obterTodos(), abastecimentoRepository.contarTodos());
     }
+
+    public AbastecimentosResponse listar(float valorMinimo, float valorMaximo) {
+        return new AbastecimentosResponse(abastecimentoRepository.obterPorValor(valorMinimo, valorMaximo), abastecimentoRepository.contarTodos());
+    }
 }

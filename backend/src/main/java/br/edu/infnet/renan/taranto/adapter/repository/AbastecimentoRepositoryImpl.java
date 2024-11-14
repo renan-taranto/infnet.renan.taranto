@@ -21,6 +21,11 @@ public class AbastecimentoRepositoryImpl implements AbastecimentoRepository {
     }
 
     @Override
+    public List<Abastecimento> obterPorValor(float valorMinimo, float valorMaximo) {
+        return springDataAbastecimentoRepository.findAllByValorBetween(valorMinimo, valorMaximo);
+    }
+
+    @Override
     public Optional<Abastecimento> buscarPorId(int id) {
         return springDataAbastecimentoRepository.findById(id);
     }
