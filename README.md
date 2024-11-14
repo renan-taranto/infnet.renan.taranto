@@ -1,29 +1,57 @@
 # Projeto para a disciplina "Arquitetura Java" da Pós-Graduação "MIT em Arquitetura de Software" da Infnet
 
-Esta é a primeira entrega do projeto em Spring. 
+Esta é a primeira entrega do projeto em Spring.
 
 Trata-se de uma API básica para registrar as despesas que pilotos possuem com suas motocicletas.
 Os dados são carregados de um arquivo CSV.
 
 ## Tecnologias Utilizadas
 
+### Backend
 - Java 17
 - Spring Boot 3.3.4
 - Maven
 
+### Frontend
+- Node 20 
+- Vue.js 3
+- Nuxt 3.13
+
 ## Arquitetura
 O projeto utiliza a Arquitetura Hexagonal.
 
+### Estrutura de Diretórios
+
+- **adapter**: Camada de adaptadores que permite que o "mundo externo" utilize a aplicação e que a aplicação acesse o mundo externo. Contém adaptadores de entrada e de saída, permitindo a comunicação com APIs externas, bancos de dados e interfaces de usuário.
+  - **client**: Adaptadores de saída responsáveis por se comunicar com APIs externas ou serviços de terceiros, implementando as portas de saída (interfaces) definidas no núcleo.
+  - **loader**: Componentes de inicialização e configuração, usados para carregar informações essenciais e configurar o ambiente na inicialização da aplicação.
+  - **repository**: Adaptadores de saída para persistência de dados, implementando as portas de repositório definidas no núcleo, e conectando o domínio ao banco de dados.
+  - **ui**: Adaptadores de entrada, como controladores REST, que expõem os casos de uso da aplicação para o mundo externo (interfaces de usuário ou APIs públicas).
+- **domain.entity**: Núcleo do domínio, onde estão as entidades que representam os conceitos principais do negócio. Essas entidades contêm a lógica de negócio e são independentes dos adaptadores e frameworks externos.
+- **port**: Diretório das portas, ou interfaces, que definem os contratos de comunicação entre o núcleo da aplicação e seus adaptadores. É dividido entre portas de entrada e de saída.
+  - **input.usecase**: Portas de entrada, que representam os casos de uso ou serviços de aplicação. Definem as operações que podem ser realizadas no núcleo, acionadas pelos adaptadores de entrada.
+  - **output**: Portas de saída, que representam interfaces para operações externas, como persistência e comunicação com APIs externas. São implementadas pelos adaptadores de saída.
+
 ## Como Executar
+
+### Backend
+Acesse o diretório `backend` e execute:
 
 > mvn clean install
 >
 > mvn spring-boot:run
 
+### Frontend
+Acesse o diretório `frontend` e execute
+
+> npm install
+> 
+> npm run dev
+
 ## Endpoints
 
 - "/historico"
-  - Lista todos os históricos de despesas cadastrados.
+    - Lista todos os históricos de despesas cadastrados.
 
 ## Diagrama de Classes UML
 ```mermaid
