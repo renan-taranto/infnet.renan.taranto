@@ -1,8 +1,6 @@
 # Projeto para a disciplina "Arquitetura Java" da Pós-Graduação "MIT em Arquitetura de Software" da Infnet
 
-Esta é a primeira entrega do projeto em Spring.
-
-Trata-se de uma API básica para registrar as despesas que pilotos possuem com suas motocicletas. O projeto também possui um frontend pra exibir os dados da API.
+API em Java para registrar as despesas que pilotos possuem com suas motocicletas. O projeto também possui um frontend em Vue/Nuxt pra exibir os dados da API.
 
 ## Tecnologias Utilizadas
 
